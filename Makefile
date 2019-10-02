@@ -6,19 +6,25 @@
 #    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/15 15:50:31 by nharra            #+#    #+#              #
-#    Updated: 2019/10/01 16:42:54 by nharra           ###   ########.fr        #
+#    Updated: 2019/10/02 14:35:00 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CHECKER = checker
+PUSH_SWAP = push_swap
 
 FLAGS = -Wall -Werror -Wextra
+
+SOURCES_PUSH_SWAP_DIR = push_swap_dir
+SOURCES_PUSH_SWAP=\
+	find_middle.c\
+	push_swap.c\
+	ft_dlist_len.c\
 
 SOURCES_CHECKER_DIR = check_dir
 SOURCES_CHECKER=\
 	checker.c\
 	take_ops.c\
-
 
 SOURCES_UTILS_DIR = utilities
 SOURCES_UTILS =\
@@ -48,16 +54,18 @@ SOURCES_UTILS =\
 	ft_memdel.c\
 	init_stack.c\
 
-vpath %.c = $(SOURCES_CHECKER_DIR) $(SOURCES_UTILS_DIR)
+vpath %.c = $(SOURCES_CHECKER_DIR) $(SOURCES_UTILS_DIR) $(SOURCES_PUSH_SWAP_DIR)
 
 OBJECTS_DIR = obj
 OBJ_CHECKER = $(SOURCES_UTILS:.c=.o) $(SOURCES_CHECKER:.c=.o)
 OBJECTS_CHECKER = $(addprefix $(OBJECTS_DIR)/, $(OBJ_CHECKER))
+OBJ_PUSH_SWAP = $(SOURCES_UTILS:.c=.o) $(SOURCES_PUSH_SWAP:.c=.o)
+OBJECTS_PUSH_SWAP = $(addprefix $(OBJECTS_DIR)/, $(OBJ_PUSH_SWAP))
 
 INC_DIR = includes
 vpath %.h = $(INC_DIR)
 
-all :$(CHECKER)
+all :$(CHECKER) $(PUSH_SWAP)
 
 $(OBJECTS_DIR):
 	mkdir $(OBJECTS_DIR)
@@ -68,6 +76,9 @@ $(OBJECTS_DIR)/%.o: %.c
 
 $(CHECKER): $(OBJECTS_CHECKER) $(INC_DIR)/utilities.h $(INC_DIR)/checker.h
 	gcc $(FLAGS) $(OBJECTS_CHECKER) -o $(CHECKER)
+
+$(PUSH_SWAP): $(OBJECTS_PUSH_SWAP) $(INC_DIR)/utilities.h $(INC_DIR)/push_swap.h
+	gcc $(FLAGS) $(OBJECTS_PUSH_SWAP) -o $(PUSH_SWAP)
 
 $(OBJECTS_CHECKER): | $(OBJECTS_DIR)
 
