@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   stack_info_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 10:32:36 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/01 17:06:15 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/04 12:52:42 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/04 12:52:42 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "stack.h"
 
-# define SA "sa"
-# define SB "sb"
-# define SS "ss"
-# define PA "pa"
-# define PB "pb"
-# define RA "ra"
-# define RB "rb"
-# define RR "rr"
-# define RRA "rra"
-# define RRB "rrb"
-# define RRR "rrr"
+int		is_max_than(t_stack *stack, int n)
+{
+	int i;
 
-# include "utilities.h"
+	i = 1;
+	while (i <= stack->n)
+	{
+		if (n < stack->data[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
-int				take_ops(t_dlist **stack_a, t_dlist **stack_b);
+int		is_min_than(t_stack *stack, int n)
+{
+	int i;
 
-#endif
+	i = 1;
+	while (i <= stack->n)
+	{
+		if (n > stack->data[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
