@@ -1,56 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_array.c                                      :+:      :+:    :+:   */
+/*   find_middle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:52:31 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 13:57:13 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/04 21:08:53 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-static void			swap(int *a, int *b)
+static void			sort(int *left, int *right)
 {
-	int temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-static void			sort(int *left, int *right, int z)
-{
-	int		*ll;
-	int		*rr;
+	int		i;
+	int		j;
+	int		k;
 
 	if (right - left <= 1)
 		return ;
-	z = *(left + (right - left) / 2);
-	ll = left;
-	rr = right - 1;
-	while (ll <= rr)
+	i = 0;
+	while(left + i < right)
 	{
-		while (*ll < z)
-			ll++;
-		while (*rr > z)
-			rr--;
-		if (ll <= rr)
+		j = i;
+		k = i;
+		while (left + j < right)
 		{
-			swap(&ll[0], &rr[0]);
-			ll++;
-			rr--;
+			if (left[j] < left[k])
+				k = j;
+			++j;
 		}
+		j = left[k];
+		left[k] = left[i];
+		left[i] = j;
+		++i;
 	}
-	if (left < rr)
-		sort(left, rr + 1, 0);
-	if (ll < right)
-		sort(ll, right, 0);
 }
 
-int					quick_sort_array(t_stack *stack, int start, char c)
+int					find_middle_array(t_stack *stack, int start, char c)
 {
 	int		*array;
 	int		count;
@@ -66,7 +54,7 @@ int					quick_sort_array(t_stack *stack, int start, char c)
 		array[i] = stack->data[start + i];
 		i++;
 	}
-	sort(array, array + count, 0);
+	sort(array, array + count);
 	i = 0;
 	if (c == 'b' && count % 2 == 0)
 		count--;

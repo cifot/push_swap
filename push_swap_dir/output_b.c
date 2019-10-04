@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:51:44 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 13:48:06 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/04 21:09:30 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int			push_swap_output_rb2(t_stack *a, t_stack *b,
 	int		i;
 
 	i = 0;
-	middle = quick_sort_array(b, b->n - n + 1, 'b');
+	middle = find_middle_array(b, b->n - n + 1, 'b');
 	while (i < n && is_max_than(b, middle) == 1)
 	{
 		if (middle < b->data[b->n])

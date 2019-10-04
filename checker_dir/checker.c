@@ -6,13 +6,13 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:51:04 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 13:49:05 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/04 20:35:07 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-static int		check_command2(t_stack *a, t_stack *b, char *line)
+static int		check_command_continue(t_stack *a, t_stack *b, char *line)
 {
 	if (stack_swap(a, b, line) == 0 &&
 		stack_push(a, b, line) == 0 &&
@@ -35,7 +35,7 @@ static int		check_command(t_stack *a, t_stack *b)
 		return (1);
 	while (get_next_line(0, &line) > 0 && line)
 	{
-		if (check_command2(a, b, line) == -1)
+		if (check_command_continue(a, b, line) == -1)
 			return (-1);
 		free(line);
 		line = NULL;

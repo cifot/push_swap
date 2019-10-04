@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:50:53 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 13:46:55 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/04 23:20:42 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				stack_push(t_stack *a, t_stack *b, char *command);
 int				stack_rotate(t_stack *a, t_stack *b, char *command);
 int				is_min_than(t_stack *stack, int n);
 int				is_max_than(t_stack *stack, int n);
-int				quick_sort_array(t_stack *stack, int start, char c);
+int				find_middle_array(t_stack *stack, int start, char c);
 int				contains_less_mid(t_stack *stack, int middle);
 void			stack_delete(t_stack *stack);
 
