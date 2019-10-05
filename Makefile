@@ -6,7 +6,7 @@
 #    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/04 12:53:22 by nharra            #+#    #+#              #
-#    Updated: 2019/10/04 23:04:21 by nharra           ###   ########.fr        #
+#    Updated: 2019/10/05 12:57:23 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS_STACK =\
 	stack_info.c \
 	stack_info_2.c \
 	stack_input.c  \
-	stack_commands.c \
+	stack_cmd.c \
 	find_middle.c \
 
 SRCS_PUSH_SWAP =\
