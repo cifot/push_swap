@@ -6,17 +6,18 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:51:04 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 20:35:07 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/08 23:28:10 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include <stdio.h>
 
 static int		check_command_continue(t_stack *a, t_stack *b, char *line)
 {
-	if (stack_swap(a, b, line) == 0 &&
-		stack_push(a, b, line) == 0 &&
-		stack_rotate(a, b, line) == 0)
+	if (check_swap(a, b, line) == 0 &&
+		check_push(a, b, line) == 0 &&
+		check_rot(a, b, line) == 0)
 	{
 		free(line);
 		return (-1);
@@ -31,8 +32,6 @@ static int		check_command(t_stack *a, t_stack *b)
 
 	count = 0;
 	line = NULL;
-	if (a->n == 0)
-		return (1);
 	while (get_next_line(0, &line) > 0 && line)
 	{
 		if (check_command_continue(a, b, line) == -1)
@@ -41,7 +40,7 @@ static int		check_command(t_stack *a, t_stack *b)
 		line = NULL;
 		count++;
 	}
-	if (stack_is_sort(a) == -1 || b->n != 0)
+	if (ft_dlist_is_tagsort(a->beg, 1) == -1 || b->size != 0)
 		ft_putstr("KO\n");
 	else
 		ft_putstr("OK\n");
@@ -59,17 +58,15 @@ int				main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
-	long		len;
 
 	if (argc == 1)
 		return (1);
-	len = check_size(argv, 1, argc);
-	a = new_stack(len);
-	b = new_stack(len);
+	a = ft_stack_new();
+	b = ft_stack_new();
 	if (create_stacks(argc, argv, a) == -1 ||
 		check_command(a, b) == -1)
 		ft_putstr("Error\n");
-	stack_delete(a);
-	stack_delete(b);
+	ft_stack_del_link(&a);
+	ft_stack_del_link(&b);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 00:02:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/01 10:53:58 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/08 23:23:42 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_dlist		*ft_dlist_push_link(t_dlist **lst, void *data, int tag)
 	t_dlist		*ptr;
 	t_dlist		*end;
 
-	if (!data || !lst || !(ptr = (t_dlist *)malloc(sizeof(*ptr))))
+	if (!lst || !(ptr = (t_dlist *)malloc(sizeof(*ptr))))
 		return (NULL);
 	ptr->content = data;
 	ptr->tag = tag;

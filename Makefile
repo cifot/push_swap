@@ -6,7 +6,7 @@
 #    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/04 12:53:22 by nharra            #+#    #+#              #
-#    Updated: 2019/10/04 23:04:21 by nharra           ###   ########.fr        #
+#    Updated: 2019/10/08 22:51:54 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,31 +16,19 @@ SRCS_CHECKER =\
 	checker.c
 
 SRCS_STACK =\
-	stack.c \
-	stack_info.c \
-	stack_info_2.c \
-	stack_input.c  \
-	stack_commands.c \
-	find_middle.c \
-
-SRCS_PUSH_SWAP =\
-	push_swap.c \
-	output.c \
-	output_b.c \
-	output_b_first.c \
-	output_a_first.c \
-	output_last.c \
-	output_start_check_sort.c \
+	check_cmd.c\
+	stack_op.c\
+	stack_input.c\
 
 SOURCES_DIR_CHECKER = checker_dir
 
-SOURCES_DIR_PUSH_SWAP = push_swap_dir
+#SOURCES_DIR_PUSH_SWAP = push_swap_dir
 
 SOURCES_DIR_STACK = stack_dir
 
 SOURCE_CHECKER = $(addprefix $(SOURCES_DIR_CHECKER)/, $(SRCS_CHECKER))
 
-SOURCE_PUSH_SWAP = $(addprefix $(SOURCES_DIR_PUSH_SWAP)/, $(SRCS_PUSH_SWAP))
+#SOURCE_PUSH_SWAP = $(addprefix $(SOURCES_DIR_PUSH_SWAP)/, $(SRCS_PUSH_SWAP))
 
 SOURCE_STACK = $(addprefix $(SOURCES_DIR_STACK)/, $(SRCS_STACK))
 
@@ -50,24 +38,23 @@ OBJ_CHECKER = $(SRCS_CHECKER:.c=.o)
 
 OBJ_STACK = $(SRCS_STACK:.c=.o)
 
-OBJ_PUSH_SWAP = $(SRCS_PUSH_SWAP:.c=.o)
+#OBJ_PUSH_SWAP = $(SRCS_PUSH_SWAP:.c=.o)
 
 OBJECTS_CHECKER = $(addprefix $(OBJECTS_DIR)/, $(OBJ_CHECKER))
 
 OBJECTS_STACK = $(addprefix $(OBJECTS_DIR)/, $(OBJ_STACK))
 
-OBJECTS_PUSH_SWAP = $(addprefix $(OBJECTS_DIR)/, $(OBJ_PUSH_SWAP))
+#OBJECTS_PUSH_SWAP = $(addprefix $(OBJECTS_DIR)/, $(OBJ_PUSH_SWAP))
 
 INCLUDE_DIR = includes
 
-vpath %.c $(SOURCES_DIR_CHECKER) $(SOURCES_DIR_PUSH_SWAP) $(SOURCES_DIR_STACK)
+vpath %.c $(SOURCES_DIR_CHECKER) $(SOURCES_DIR_STACK)
 
-INCLUDES = stack.h \
-			push_swap.h
+INCLUDES = stack.h
 
 NAME_CHECKER = checker
 
-NAME_PUSH_SWAP = push_swap
+#NAME_PUSH_SWAP = push_swap
 
 LIBFT = $(addprefix $(LIBFT_DIR)/, libft.a)
 
@@ -75,13 +62,13 @@ LIBFT_DIR = libft
 
 LIBFT_INCLUDE_DIR = libft/includes
 
-all: $(NAME_PUSH_SWAP) $(NAME_CHECKER)
+all: $(NAME_CHECKER)
 
 $(NAME_CHECKER): $(LIBFT_DIR)/libft.a $(OBJECTS_STACK) $(OBJECTS_CHECKER)
 	gcc $(FLAGS) -o $(NAME_CHECKER) $(OBJECTS_CHECKER) $(OBJECTS_STACK) -I $(LIBFT_INCLUDE_DIR) -I $(INCLUDE_DIR) -L libft/ -lft
 
-$(NAME_PUSH_SWAP): $(LIBFT_DIR)/libft.a $(OBJECTS_STACK) $(OBJECTS_PUSH_SWAP)
-	gcc $(FLAGS) -o $(NAME_PUSH_SWAP) $(OBJECTS_PUSH_SWAP) $(OBJECTS_STACK) -I $(LIBFT_INCLUDE_DIR) -I $(INCLUDE_DIR) -L libft/ -lft
+#$(NAME_PUSH_SWAP): $(LIBFT_DIR)/libft.a $(OBJECTS_STACK) $(OBJECTS_PUSH_SWAP)
+#	gcc $(FLAGS) -o $(NAME_PUSH_SWAP) $(OBJECTS_PUSH_SWAP) $(OBJECTS_STACK) -I $(LIBFT_INCLUDE_DIR) -I $(INCLUDE_DIR) -L libft/ -lft
 
 $(OBJECTS_DIR)/%.o: %.c
 	gcc  -I$(INCLUDE_DIR) -I$(LIBFT_INCLUDE_DIR) -c $< -o $@ $(FLAGS)

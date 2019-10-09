@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_stack_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 12:24:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/09/05 18:53:36 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/07 21:01:45 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/07 21:23:18 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rec(unsigned n, int fd)
+t_stack		*ft_stack_new(void)
 {
-	if (n < 10)
-		ft_putchar_fd('0' + n, fd);
-	else
-	{
-		ft_rec(n / 10, fd);
-		ft_rec(n % 10, fd);
-	}
-}
+	t_stack *st;
 
-void			ft_putnbr_fd(int n, int fd)
-{
-	long lnum;
-
-	lnum = n;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		lnum = -lnum;
-	}
-	ft_rec(lnum, fd);
+	if (!(st = (t_stack *)malloc(sizeof(*st))))
+		return (NULL);
+	st->beg = NULL;
+	st->size = 0;
+	return (st);
 }

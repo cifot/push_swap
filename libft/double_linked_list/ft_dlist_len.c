@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_info_2.c                                     :+:      :+:    :+:   */
+/*   ft_dlist_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/04 12:52:42 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 20:32:37 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/07 14:54:11 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/07 14:56:44 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "libft.h"
 
-int		is_max_than(t_stack *stack, int n)
+size_t		ft_dlist_len(t_dlist *ptr)
 {
-	int i;
+	size_t	len;
 
-	i = 1;
-	while (i <= stack->n)
+	len = 0;
+	while (ptr)
 	{
-		if (n < stack->data[i])
-			return (1);
-		i++;
+		++len;
+		ptr = ptr->next;
 	}
-	return (0);
-}
-
-int		is_min_than(t_stack *stack, int n)
-{
-	int i;
-
-	i = 1;
-	while (i <= stack->n)
-	{
-		if (n > stack->data[i])
-			return (1);
-		i++;
-	}
-	return (0);
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:17:27 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 20:42:14 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/08 23:00:31 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 **						MEMORY
 */
 
+long				ft_atol(const char *nptr);
+int					ft_atoi(const char *nptr);
 size_t				ft_strlen(const char *s);
 int					ft_atoi(const char *str);
 void				*ft_memset(void *b, int c, size_t len);
@@ -76,11 +78,12 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				*ft_safe_strcat(char **dest, const char *src);
-char				*ft_ulltostr(unsigned long long num, unsigned base);
+char				*ft_strtoull(unsigned long long num, unsigned base);
+char				*ft_strtoll(long long num, unsigned base);
 char				*ft_lltostr(long long num, unsigned base);
+char				*ft_ulltostr(unsigned long long num, unsigned base);
 int					ll_len_base(long long num, unsigned base);
 int					ull_len_base(unsigned long long num, unsigned base);
-long				ft_atol(const char *s);
 
 /*
 **						SINGLE_LINKED_LIST
@@ -128,9 +131,43 @@ t_dlist				*ft_dlist_push(t_dlist **lst, void *data, size_t size,
 void				ft_dlist_simple_delone(t_dlist **lst, t_dlist *ptr);
 void				ft_dlist_simple_del(t_dlist **lst);
 t_dlist				*ft_dlist_find_tag(t_dlist const *lst, int tag);
-t_dlist				*ft_dlist_push_link(t_dlist **lst, void *data, int tag);
 void				ft_dlist_delone_link(t_dlist **lst, t_dlist *ptr);
 void				ft_dlist_del_link(t_dlist **lst);
+t_dlist				*ft_dlist_push_link(t_dlist **lst, void *data, int tag);
+t_dlist				*ft_dlist_addfront_link(t_dlist **lst, void *data,
+											int tag);
+size_t				ft_dlist_len(t_dlist *ptr);
+int					ft_dlist_is_tagsort(t_dlist *lst, int is_ascending);
 
+/*
+**						QUEUE
+*/
+
+typedef struct		s_queue
+{
+	t_dlist 		*beg;
+	t_dlist 		*end;
+	size_t			size;
+}					t_queue;
+
+int					ft_queue_push_link(t_queue *queue, void *el, int tag);
+void				ft_queque_del_link(t_queue **queue);
+void				*ft_queue_pop(t_queue *queue);
+t_queue				*ft_queue_new(void);
+
+/*
+**						QUEUE
+*/
+
+typedef struct		s_stack
+{
+	t_dlist 		*beg;
+	size_t			size;
+}					t_stack;
+
+int					ft_stack_push_link(t_stack *stack, void *el, int tag);
+void				ft_stack_del_link(t_stack **stack);
+void				*ft_stack_pop(t_stack *stack);
+t_stack				*ft_stack_new(void);
 
 #endif

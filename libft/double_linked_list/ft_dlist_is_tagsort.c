@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dlist_is_tagsort.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 12:24:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/09/05 18:53:36 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/08 22:55:19 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/08 22:59:44 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rec(unsigned n, int fd)
+int		ft_dlist_is_tagsort(t_dlist *lst, int is_ascending)
 {
-	if (n < 10)
-		ft_putchar_fd('0' + n, fd);
+	if (!lst)
+		return (1);
+	if (is_ascending)
+	{
+		while (lst->next)
+		{
+			if (lst->tag > lst->next->tag)
+				return (0);
+			lst = lst->next;
+		}
+	}
 	else
 	{
-		ft_rec(n / 10, fd);
-		ft_rec(n % 10, fd);
+		while (lst->next)
+		{
+			if (lst->tag < lst->next->tag)
+				return (0);
+			lst = lst->next;
+		}
 	}
-}
-
-void			ft_putnbr_fd(int n, int fd)
-{
-	long lnum;
-
-	lnum = n;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		lnum = -lnum;
-	}
-	ft_rec(lnum, fd);
+	return (1);
 }

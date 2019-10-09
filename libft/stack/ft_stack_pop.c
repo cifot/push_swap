@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_stack_pop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 12:24:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/09/05 18:53:36 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/07 21:07:48 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/07 21:22:23 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rec(unsigned n, int fd)
+void	*ft_stack_pop(t_stack *st)
 {
-	if (n < 10)
-		ft_putchar_fd('0' + n, fd);
-	else
-	{
-		ft_rec(n / 10, fd);
-		ft_rec(n % 10, fd);
-	}
-}
+	void	*ptr;
 
-void			ft_putnbr_fd(int n, int fd)
-{
-	long lnum;
-
-	lnum = n;
-	if (n < 0)
+	ptr = NULL;
+	if (st && st->beg)
 	{
-		ft_putchar_fd('-', fd);
-		lnum = -lnum;
+		ptr = st->beg->content;
+		ft_dlist_delone_link(&(st->beg), st->beg);
+		st->size--;
 	}
-	ft_rec(lnum, fd);
+	return (ptr);
 }

@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_queue_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 12:24:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/09/05 18:53:36 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/07 13:53:08 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/07 14:46:08 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rec(unsigned n, int fd)
+t_queue		*ft_queue_new(void)
 {
-	if (n < 10)
-		ft_putchar_fd('0' + n, fd);
-	else
-	{
-		ft_rec(n / 10, fd);
-		ft_rec(n % 10, fd);
-	}
-}
+	t_queue *ptr;
 
-void			ft_putnbr_fd(int n, int fd)
-{
-	long lnum;
-
-	lnum = n;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		lnum = -lnum;
-	}
-	ft_rec(lnum, fd);
+	if (!(ptr = (t_queue *)malloc(sizeof(*ptr))))
+		return (NULL);
+	ptr->size = 0;
+	ptr->beg = NULL;
+	ptr->end = NULL;
+	return (ptr);
 }

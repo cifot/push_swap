@@ -3,100 +3,104 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/13 08:48:08 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 15:40:05 by nharra           ###   ########.fr       */
+/*   Created: 2019/09/07 10:04:33 by czena             #+#    #+#             */
+/*   Updated: 2019/09/08 12:05:23 by czena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-static size_t	count_words(const char *str, char del)
+static int		ft_move(char *s, int *i, char w)
 {
-	size_t size;
+	int start;
 
+	start = 0;
+	while (s[*i] == w)
+		*i = *i + 1;
+	start = *i;
+	while (s[*i] != w && s[*i] != '\0')
+		*i = *i + 1;
+	return (start);
+}
+
+static void		ft_words(char *s, int *n, char w)
+{
+	int		i;
+	int		start;
+
+	i = 0;
+	start = ft_move(s, &i, w);
+	if (s[start] != '\0')
+	{
+		*n = *n + 1;
+		ft_words(&s[i], n, w);
+	}
+}
+
+static void		ft_clear_result(char **result, int n)
+{
+	int i;
+
+	i = 0;
+	while (i < n)
+	{
+		free(result[i]);
+		result[i] = (void*)0;
+		i++;
+	}
+	free(result);
+	result = (void*)0;
+}
+
+static int		ft_word(char *s, char w, char **res, int *n)
+{
+	int		i;
+	int		size;
+
+	i = 0;
 	size = 0;
-	while (*str)
+	ft_move(s, &size, w);
+	if ((res[*n] = (char*)malloc(sizeof(char) * (size + 1))) == (void*)0)
 	{
-		while (*str == del)
-			++str;
-		if (*str)
-		{
-			while ((*str != del) && *str)
-				++str;
-			++size;
-		}
+		ft_clear_result(res, *n);
+		return (0);
 	}
-	return (size);
-}
-
-static size_t	size_word(const char *str, char del)
-{
-	size_t size;
-
-	size = 0;
-	while (*str == del)
-		++str;
-	while ((*str != del) && *str)
+	while (s[i] != w && s[i] != '\0')
 	{
-		++str;
-		++size;
+		res[*n][i] = s[i];
+		i++;
 	}
-	return (size);
-}
-
-static void		ft_free(char ***str, size_t i)
-{
-	size_t	j;
-
-	j = 0;
-	while (j < i)
-	{
-		free((*str)[j]);
-		(*str)[j] = NULL;
-	}
-	free(*str);
-	*str = NULL;
-}
-
-static void		ft_make_str(char const **str, int del, char *answer)
-{
-	size_t j;
-
-	j = 0;
-	while (**str == del)
-		++(*str);
-	while ((**str != del) && **str)
-		answer[j++] = *((*str)++);
-	answer[j] = 0;
+	res[*n][size] = '\0';
+	return (1);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
-	char	**answer;
-	size_t	count;
-	size_t	i;
-	size_t	len_word;
+	char	**result;
+	int		n;
+	int		i;
+	int		start;
+	int		end;
 
-	if (!s)
-		return (NULL);
-	count = count_words(s, c);
-	if (!(answer = (char**)malloc(sizeof(*answer) * (count + 1))))
-		return (NULL);
+	n = 0;
 	i = 0;
-	while (i < count)
-	{
-		len_word = size_word(s, c) + 1;
-		if (!(answer[i] = (char*)malloc(sizeof(**answer) * len_word)))
+	start = 0;
+	end = 0;
+	if (s == (void*)0)
+		return ((void*)0);
+	ft_words((char*)s, &n, c);
+	if ((result = (char**)malloc(sizeof(char*) * (n + 1))) == (void*)0)
+		return ((void*)0);
+	if (n != 0)
+		while (i < n)
 		{
-			ft_free(&answer, i);
-			return (NULL);
+			start = ft_move((char *)s, &end, c);
+			if (ft_word(&((char *)s)[start], c, result, &i) == 0)
+				return ((void*)0);
+			i++;
 		}
-		ft_make_str(&s, c, answer[i]);
-		++i;
-	}
-	answer[i] = NULL;
-	return (answer);
+	result[i] = (void*)0;
+	return (&result[0]);
 }

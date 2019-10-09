@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_queue_del_link.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 12:24:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/09/05 18:53:36 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/07 13:59:23 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/07 21:07:16 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rec(unsigned n, int fd)
+void	ft_queque_del_link(t_queue **queue)
 {
-	if (n < 10)
-		ft_putchar_fd('0' + n, fd);
-	else
+	if (queue && *queue)
 	{
-		ft_rec(n / 10, fd);
-		ft_rec(n % 10, fd);
+		ft_dlist_del_link(&((*queue)->beg));
+		free(*queue);
 	}
-}
-
-void			ft_putnbr_fd(int n, int fd)
-{
-	long lnum;
-
-	lnum = n;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		lnum = -lnum;
-	}
-	ft_rec(lnum, fd);
+	if (queue)
+		*queue = NULL;
 }

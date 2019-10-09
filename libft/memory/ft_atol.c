@@ -3,45 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/04 20:28:03 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/04 20:31:02 by nharra           ###   ########.fr       */
+/*   Created: 2019/09/05 23:52:40 by czena             #+#    #+#             */
+/*   Updated: 2019/09/28 14:23:37 by czena            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int		ft_is_space(char c)
+static long		ft_check_int(char *str, int n, long res)
 {
-	if (c == ' ' || c == '\t' || c == '\n')
-		return (1);
-	if (c == '\v' || c == '\f' || c == '\r')
-		return (1);
-	return (0);
+	while (n >= 0)
+	{
+		if (n + '0' == *str)
+			res = res * 10 + n;
+		n--;
+	}
+	return (res);
 }
 
-long			ft_atol(const char *str)
+static int		ft_check_long(long res, char c, long sign)
 {
-	long		unswer;
-	int			flag;
-	int			i;
+	if (res * sign <= -922337203685477580 && c - '0' >= 8)
+		return (0);
+	if (res * sign >= 922337203685477580 && c - '0' >= 7)
+		return (-1);
+	return (1);
+}
 
-	i = 0;
-	flag = 1;
-	unswer = 0;
-	while (ft_is_space(str[i]))
+static char		*ft_start(char *nptr, long *sign)
+{
+	while ((*nptr >= 2 && *nptr <= 32) && *nptr != 27)
+		nptr++;
+	if (*nptr == '-')
+		*sign = -1;
+	if (*nptr == '+' || *nptr == '-')
+		nptr++;
+	return (nptr);
+}
+
+long			ft_atol(const char *nptr)
+{
+	long n;
+	long res;
+	long sign;
+
+	n = 9;
+	res = 0;
+	sign = 1;
+	nptr = ft_start((char*)nptr, &sign);
+	while (*nptr != '\0')
 	{
-		++i;
+		if (*nptr >= '0' && *nptr <= '9')
+		{
+			if (ft_check_long(res, nptr[0], sign) > 0)
+				res = ft_check_int((char*)nptr, n, res);
+			else
+				return (ft_check_long(res, nptr[0], sign));
+		}
+		else
+			return (res * sign);
+		n = 9;
+		nptr++;
 	}
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			flag = -1;
-		++i;
-	}
-	while (str[i] <= '9' && str[i] >= '0')
-	{
-		unswer = unswer * 10 + flag * (str[i] - '0');
-		++i;
-	}
-	return (unswer);
+	return (res * sign);
 }

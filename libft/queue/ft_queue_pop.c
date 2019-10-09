@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_queue_pop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 12:24:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/09/05 18:53:36 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/07 13:45:24 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/07 21:09:32 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rec(unsigned n, int fd)
+void		*ft_queue_pop(t_queue *queue)
 {
-	if (n < 10)
-		ft_putchar_fd('0' + n, fd);
-	else
-	{
-		ft_rec(n / 10, fd);
-		ft_rec(n % 10, fd);
-	}
-}
+	void	*ptr;
+	t_dlist	*del;
 
-void			ft_putnbr_fd(int n, int fd)
-{
-	long lnum;
-
-	lnum = n;
-	if (n < 0)
+	ptr = NULL;
+	if (queue && queue->end)
 	{
-		ft_putchar_fd('-', fd);
-		lnum = -lnum;
+		ptr = queue->end->content;
+		del = queue->end;
+		queue->end = queue->end->prev;
+		ft_dlist_delone_link(&(queue->beg), del);
+		queue->size--;
 	}
-	ft_rec(lnum, fd);
+	return (ptr);
 }

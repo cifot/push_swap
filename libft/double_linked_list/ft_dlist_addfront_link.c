@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dlist_addfront_link.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 12:24:32 by nharra            #+#    #+#             */
-/*   Updated: 2019/09/05 18:53:36 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/07 13:35:14 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/07 15:43:24 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rec(unsigned n, int fd)
+t_dlist		*ft_dlist_addfront_link(t_dlist **lst, void *data, int tag)
 {
-	if (n < 10)
-		ft_putchar_fd('0' + n, fd);
-	else
-	{
-		ft_rec(n / 10, fd);
-		ft_rec(n % 10, fd);
-	}
-}
+	t_dlist		*ptr;
 
-void			ft_putnbr_fd(int n, int fd)
-{
-	long lnum;
-
-	lnum = n;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		lnum = -lnum;
-	}
-	ft_rec(lnum, fd);
+	if (!lst || !(ptr = (t_dlist *)malloc(sizeof(*ptr))))
+		return (NULL);
+	ptr->content = data;
+	ptr->tag = tag;
+	ptr->prev = NULL;
+	ptr->next = *lst;
+	if (*lst != NULL)
+		(*lst)->prev = ptr;
+	*lst = ptr;
+	return (*lst);
 }
