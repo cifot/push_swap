@@ -6,56 +6,61 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:52:57 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/08 23:26:28 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 14:13:41 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "stack.h"
 #include <stdio.h>
 
-static int		check_same(t_dlist *lst)
+static int		check_same(t_stack *st)
 {
 	t_dlist *ptr1;
 	t_dlist *ptr2;
 
-	ptr1 = lst;
+	ptr1 = st->beg;
 	while(ptr1)
 	{
 		ptr2 = ptr1->next;
 		while (ptr2)
 		{
 			if (ptr1->tag == ptr2->tag)
-				return (-1);
+				return (1);
 			ptr2 = ptr2->next;
 		}
 		ptr1 = ptr1->next;
 	}
-	return (1);
+	return (0);
 }
 
-static int		check_num(char *str, t_dlist **ptr)
+static int		add_num(char *str, t_stack *st)
 {
-	int		n;
-	long	res;
+	long		unswer;
+	int			flag_find;
+	int			flag;
 
-	n = 0;
-	res = ft_atol(str);
-	while (((*str) >= 2 && (*str) <= 32) && (*str) != 27)
-		str++;
-	if (((*str) == '+' || (*str) == '-') && ft_isdigit((str[1])) == 1)
-		str++;
-	while ((*str) != '\0')
+	flag_find = 0;
+	flag = 1;
+	unswer = 0;
+	while (*str == ' ')
+		++str;
+	if (*str == '-' || *str == '+')
+		if (*(str++) + (flag_find = 2) - 2 == '-')
+			flag = -1;
+	while (*str <= '9' && *str >= '0')
 	{
-		if (ft_isdigit((*str)) == 0)
+		unswer = unswer * 10 + flag * (*str - '0');
+		flag_find = 1;
+		if (unswer > INT_MAX || unswer < INT_MIN)
 			return (-1);
-		else
-			n++;
-		str++;
+		++str;
 	}
-	if (n > 11 || res > 2147483647 || res < -2147483648)
+	if (flag_find == 2 || (*str != '\0'))
 		return (-1);
-	ft_dlist_push_link(ptr, NULL, res);
-	return (1);
+	else if (flag_find == 1)
+		ft_stack_push_link(st, NULL, unswer);
+	return (0);
 }
 
 static void		delete_split(char **words)
@@ -71,57 +76,45 @@ static void		delete_split(char **words)
 	free(words);
 }
 
-static int		split(char *str, t_dlist **lst)
+static int		add_nums(char *str, t_stack *st)
 {
-	char	**words;
-	int		len;
-	int		i;
+	char		**words;
+	int			i;
+	t_stack		*tmp;
 
-	len = 0;
-	if ((words = ft_strsplit(str, ' ')))
-	{
-		while (words[len])
-			len++;
-		i = len - 1;
-		while (i >= 0)
-		{
-			if (ft_strlen(words[i]) > 0)
-				if (check_num(words[i], lst) == -1)
-				{
-					delete_split(words);
-					return (-1);
-				}
-			i--;
-		}
-		delete_split(words);
-	}
-	else
+	tmp = ft_stack_new();
+	if (!(words = ft_strsplit(str, ' ')))
 		return (-1);
-	return (1);
+	i = 0;
+	while (words[i])
+	{
+		if (add_num(words[i], tmp) == -1)
+		{
+			ft_stack_del_link(&tmp);
+			delete_split(words);
+			return (-1);
+		}
+		++i;
+	}
+	while(tmp->size)
+		push_op(tmp, st);
+	ft_stack_del_link(&tmp);
+	delete_split(words);
+	return (0);
 }
 
-int				push_input(int argc, char **argv, t_stack *stack)
+int				make_input(int argc, char **argv, t_stack *stack)
 {
 	int		i;
-	t_dlist	*ptr;
 
-	ptr = NULL;
 	i = argc - 1;
 	while (i > 0)
 	{
-		if (split(argv[i], &ptr) == -1)
-		{
-			ft_dlist_del_link(&ptr);
+		if (add_nums(argv[i], stack) == -1)
 			return (-1);
-		}
-		i--;
+		--i;
 	}
-	if (check_same(ptr) == -1)
-	{
-		ft_dlist_del_link(&ptr);
+	if (check_same(stack))
 		return (-1);
-	}
-	stack->beg = ptr;
-	stack->size = ft_dlist_len(ptr);
-	return (1);
+	return (0);
 }

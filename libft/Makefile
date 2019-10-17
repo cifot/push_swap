@@ -6,7 +6,7 @@
 #    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:21:44 by nharra            #+#    #+#              #
-#    Updated: 2019/10/08 23:04:42 by nharra           ###   ########.fr        #
+#    Updated: 2019/10/15 23:32:32 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,8 @@ SOURCES_STACK=\
 	ft_stack_del_link.c\
 	ft_stack_pop.c\
 	ft_stack_new.c\
+	ft_stack_del.c\
+	ft_stack_simple_del.c\
 
 
 SOURCES_FILE=\

@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:27:57 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/08 23:03:13 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/16 00:19:27 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "libft.h"
 
-int			push_input(int argc, char **argv, t_stack *stack);
+int			make_input(int argc, char **argv, t_stack *stack);
 void		push_op(t_stack *from, t_stack *to);
 void		rotate_op(t_stack *stack);
 void		rev_rotate_op(t_stack *stack);

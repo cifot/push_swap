@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 21:04:03 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/08 21:19:45 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/15 23:27:38 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,4 @@ void	ft_stack_del_link(t_stack **st)
 		ft_dlist_del_link(&((*st)->beg));
 		free(*st);
 	}
-	if (st)
-		*st = NULL;
 }

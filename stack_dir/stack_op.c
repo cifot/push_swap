@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 20:45:37 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/08 21:29:26 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 13:55:55 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	swap_op(t_stack *stack)
 	if (!stack || !(stack->beg) || !(stack->beg->next))
 		return ;
 	ptr = stack->beg->next;
+	if (ptr->next)
+		ptr->next->prev = stack->beg;
 	stack->beg->prev = ptr;
 	stack->beg->next = ptr->next;
 	ptr->next = stack->beg;

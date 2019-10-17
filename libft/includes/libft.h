@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:17:27 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/08 23:00:31 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/15 23:31:59 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define BUFF_SIZE 1024
 
+# define BUFF_SIZE 1024
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 /*
 **						MEMORY
 */
@@ -156,7 +158,7 @@ void				*ft_queue_pop(t_queue *queue);
 t_queue				*ft_queue_new(void);
 
 /*
-**						QUEUE
+**						STACK
 */
 
 typedef struct		s_stack
@@ -169,5 +171,8 @@ int					ft_stack_push_link(t_stack *stack, void *el, int tag);
 void				ft_stack_del_link(t_stack **stack);
 void				*ft_stack_pop(t_stack *stack);
 t_stack				*ft_stack_new(void);
+void				ft_stack_simple_del(t_stack **st);
+void				ft_stack_del(t_stack **st, void (*del)(void *));
+
 
 #endif
