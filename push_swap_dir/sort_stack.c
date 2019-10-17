@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:48:30 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 22:18:56 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/18 00:11:03 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		half_to_b(t_stack *a,  t_stack *b, size_t  size)
 		i--;
 	}
 	i = size - b->size - i;
-	if (size != a->size)
+	if (size != a->size + b->size)
 		while(i--)
 		{
 			rev_rotate_op(a);
