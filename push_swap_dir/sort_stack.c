@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:48:30 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 18:50:34 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 22:18:56 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,33 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	half_to_b(t_stack *a,  t_stack *b, size_t  size)
+static int		check_more(t_stack *a, size_t size, int middle)
 {
-	size_t i;
+	t_dlist *ptr;
+
+	ptr = a->beg;
+	while(size)
+	{
+		if  (ptr->tag < middle)
+		{
+			return (1);
+		}
+		--size;
+		ptr =  ptr->next;
+	}
+	return (0);
+}
+
+static void		half_to_b(t_stack *a,  t_stack *b, size_t  size)
+{
+	size_t	i;
 	int		middle;
 
-	i = 0;
+	i = size;
 	middle = find_middle(a, size);
-	while(i < size)
+	while(check_more(a, i, middle))
 	{
-		if (a->beg->tag > middle)
+		if (a->beg->tag >= middle)
 		{
 			rotate_op(a);
 			ft_putstr("ra\n");
@@ -34,23 +51,22 @@ void	half_to_b(t_stack *a,  t_stack *b, size_t  size)
 			push_op(a, b);
 			ft_putstr("pb\n");
 		}
-		++i;
+		i--;
 	}
+	i = size - b->size - i;
+	if (size != a->size)
+		while(i--)
+		{
+			rev_rotate_op(a);
+			ft_putstr("rra\n");
+		}
 }
 
-void	all_to_a_with_rotate(t_stack *a, t_stack *b, size_t size_a)
+void	all_to_a_with_rotate(t_stack *a, t_stack *b)
 {
 	size_t size;
 
 	size = b->size;
-
-	if (size_a != a->size)
-		while(size_a)
-		{
-			ft_putstr("rra\n");
-			rev_rotate_op(a);
-			--size_a;
-		}
 	while(b->size)
 	{
 		ft_putstr("pa\n");
@@ -64,15 +80,8 @@ void	all_to_a_with_rotate(t_stack *a, t_stack *b, size_t size_a)
 	}
 }
 
-void	all_to_a(t_stack *a, t_stack *b, size_t size_a)
+void	all_to_a(t_stack *a, t_stack *b)
 {
-	if (size_a != a->size)
-		while(size_a)
-		{
-			ft_putstr("rra\n");
-			rev_rotate_op(a);
-			--size_a;
-		}
 	while(b->size)
 	{
 		ft_putstr("pa\n");
@@ -93,12 +102,12 @@ void	sort_stack(t_stack *a, t_stack *b, size_t size)
 	size_a = size - size_b;
 	if (check_simple_b(b))
 	{
-		all_to_a_with_rotate(a, b, size_a);
+		all_to_a_with_rotate(a, b);
 		sort_stack(a, b, size_a);
 	}
 	else
 	{
-		all_to_a(a, b, size_a);
+		all_to_a(a, b);
 		sort_stack(a, b, size_b);
 		sort_stack(a, b, size_a);
 	}

@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:43:05 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 14:18:46 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 22:23:16 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int				main(int argc, char **argv)
 		ft_putstr("Error\n");
 	else if (a->size != 0)
 		sort_stack(a, b, a->size);
-	else
-		ft_putstr("\n");
 	ft_stack_del_link(&a);
 	ft_stack_del_link(&b);
 	return (1);
