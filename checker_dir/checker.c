@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:51:04 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 14:19:33 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 19:22:00 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ static int		check_command(t_stack *a, t_stack *b)
 		free(line);
 		line = NULL;
 		count++;
+	}
+	for(t_dlist *ptr = a->beg; ptr->next != NULL; ptr = ptr->next)
+	{
+		if (ptr->tag > ptr->next->tag)
+		{
+			ft_putnbr(ptr->tag);
+			ft_putstr("\n");
+		}
 	}
 	if (ft_dlist_is_tagsort(a->beg, 1) == 0 || b->size != 0)
 		ft_putstr("KO\n");

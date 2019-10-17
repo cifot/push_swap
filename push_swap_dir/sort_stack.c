@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:48:30 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 14:08:38 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 18:50:34 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	half_to_b(t_stack *a,  t_stack *b, size_t  size)
 	middle = find_middle(a, size);
 	while(i < size)
 	{
-		if (a->beg->tag >= middle)
+		if (a->beg->tag > middle)
 		{
 			rotate_op(a);
 			ft_putstr("ra\n");
@@ -44,20 +44,21 @@ void	all_to_a_with_rotate(t_stack *a, t_stack *b, size_t size_a)
 
 	size = b->size;
 
-	while(size_a)
-	{
-		ft_putendl("rra");
-		rev_rotate_op(a);
-		--size_a;
-	}
+	if (size_a != a->size)
+		while(size_a)
+		{
+			ft_putstr("rra\n");
+			rev_rotate_op(a);
+			--size_a;
+		}
 	while(b->size)
 	{
-		ft_putendl("pa");
+		ft_putstr("pa\n");
 		push_op(b, a);
 	}
 	while(size)
 	{
-		ft_putendl("ra");
+		ft_putstr("ra\n");
 		rotate_op(a);
 		--size;
 	}
@@ -65,15 +66,16 @@ void	all_to_a_with_rotate(t_stack *a, t_stack *b, size_t size_a)
 
 void	all_to_a(t_stack *a, t_stack *b, size_t size_a)
 {
-	while(size_a)
-	{
-		ft_putendl("rra");
-		rev_rotate_op(a);
-		--size_a;
-	}
+	if (size_a != a->size)
+		while(size_a)
+		{
+			ft_putstr("rra\n");
+			rev_rotate_op(a);
+			--size_a;
+		}
 	while(b->size)
 	{
-		ft_putendl("pa");
+		ft_putstr("pa\n");
 		push_op(b, a);
 	}
 }
@@ -89,11 +91,10 @@ void	sort_stack(t_stack *a, t_stack *b, size_t size)
 	half_to_b(a, b, size);
 	size_b = b->size;
 	size_a = size - size_b;
-	if (ft_dlist_is_tagsort(b->beg, 0))
+	if (check_simple_b(b))
 	{
 		all_to_a_with_rotate(a, b, size_a);
 		sort_stack(a, b, size_a);
-
 	}
 	else
 	{

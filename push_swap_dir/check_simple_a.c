@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:59:53 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 13:35:54 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 17:48:55 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	sort_2a(t_stack *a)
 {
 	if (a->beg->tag > a->beg->next->tag)
 	{
-		ft_putendl("sa");
+		ft_putstr("sa\n");
 		swap_op(a);
 	}
-	ft_putendl("ra");
-	ft_putendl("ra");
+	ft_putstr("ra\n");
+	ft_putstr("ra\n");
 	rotate_op(a);
 	rotate_op(a);
 }
@@ -31,10 +31,10 @@ int		check_sort(t_stack *a, size_t size_a)
 {
 	t_dlist		*lst;
 
-	lst = a->beg;
-	if (!a || !(a->beg))
+	if (!a || !(a->beg) || size_a < 2)
 		return 1;
-	while (lst->next && size_a)
+	lst = a->beg;
+	while (lst->next && (size_a - 1))
 	{
 		if (lst->tag > lst->next->tag)
 		{
@@ -50,12 +50,11 @@ static void all_rotate(t_stack *a, size_t size_a)
 {
 	while(size_a)
 	{
-		ft_putendl("ra");
+		ft_putstr("ra\n");
 		rotate_op(a);
 		--size_a;
 	}
 }
-
 
 int		check_simple_a(t_stack *a, size_t size_a)
 {
@@ -68,7 +67,7 @@ int		check_simple_a(t_stack *a, size_t size_a)
 		return (0);
 	if (size_a == 1)
 	{
-		ft_putendl("ra");
+		ft_putstr("ra\n");
 		rotate_op(a);
 	}
 	else if (size_a == 2)

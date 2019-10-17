@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:17:27 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/15 23:31:59 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/17 17:29:01 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 65536
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 /*

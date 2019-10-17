@@ -6,7 +6,7 @@
 #    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/04 12:53:22 by nharra            #+#    #+#              #
-#    Updated: 2019/10/17 13:31:31 by nharra           ###   ########.fr        #
+#    Updated: 2019/10/17 19:37:49 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS_PUSH_SWAP =\
 	push_swap.c\
 	sort_stack.c\
 	check_simple_a.c\
+	check_simple_b.c\
 
 SOURCES_DIR_CHECKER = checker_dir
 
@@ -87,10 +88,11 @@ $(OBJECTS_DIR):
 $(LIBFT_DIR)/libft.a:
 	make -C $(LIBFT_DIR) all
 
-fclean: clean
+fclean:
 	make -C $(LIBFT_DIR) fclean
 	rm -rf $(NAME_CHECKER)
 	rm -rf $(NAME_PUSH_SWAP)
+	rm -rf $(OBJECTS_DIR)
 
 clean:
 	make -C $(LIBFT_DIR) clean
