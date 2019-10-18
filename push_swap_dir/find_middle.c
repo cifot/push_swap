@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_middle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:49:57 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 12:50:13 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/18 13:22:04 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		sort_arr(int *buf, size_t size)
 	int		tmp;
 
 	i = 0;
-	while(i + 1 < size)
+	while (i + 1 < size)
 	{
 		j = i + 1;
 		min = i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:48:30 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/18 00:11:03 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/18 13:27:34 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,24 @@ static int		check_more(t_stack *a, size_t size, int middle)
 	t_dlist *ptr;
 
 	ptr = a->beg;
-	while(size)
+	while (size)
 	{
-		if  (ptr->tag < middle)
+		if (ptr->tag < middle)
 		{
 			return (1);
 		}
 		--size;
-		ptr =  ptr->next;
+		ptr = ptr->next;
 	}
 	return (0);
 }
 
-static void		half_to_b(t_stack *a,  t_stack *b, size_t  size)
+static void		half_to_b(t_stack *a, t_stack *b, size_t size, size_t i)
 {
-	size_t	i;
 	int		middle;
 
-	i = size;
 	middle = find_middle(a, size);
-	while(check_more(a, i, middle))
+	while (check_more(a, i, middle))
 	{
 		if (a->beg->tag >= middle)
 		{
@@ -55,24 +53,24 @@ static void		half_to_b(t_stack *a,  t_stack *b, size_t  size)
 	}
 	i = size - b->size - i;
 	if (size != a->size + b->size)
-		while(i--)
+		while (i--)
 		{
 			rev_rotate_op(a);
 			ft_putstr("rra\n");
 		}
 }
 
-void	all_to_a_with_rotate(t_stack *a, t_stack *b)
+static void		all_to_a_with_rotate(t_stack *a, t_stack *b)
 {
 	size_t size;
 
 	size = b->size;
-	while(b->size)
+	while (b->size)
 	{
 		ft_putstr("pa\n");
 		push_op(b, a);
 	}
-	while(size)
+	while (size)
 	{
 		ft_putstr("ra\n");
 		rotate_op(a);
@@ -80,24 +78,24 @@ void	all_to_a_with_rotate(t_stack *a, t_stack *b)
 	}
 }
 
-void	all_to_a(t_stack *a, t_stack *b)
+static void		all_to_a(t_stack *a, t_stack *b)
 {
-	while(b->size)
+	while (b->size)
 	{
 		ft_putstr("pa\n");
 		push_op(b, a);
 	}
 }
 
-void	sort_stack(t_stack *a, t_stack *b, size_t size)
+void			sort_stack(t_stack *a, t_stack *b, size_t size)
 {
 	size_t size_b;
 	size_t size_a;
 
-	if ((ft_dlist_is_tagsort(a->beg, 1) && b->size == 0)||
+	if ((ft_dlist_is_tagsort(a->beg, 1) && b->size == 0) ||
 		check_simple_a(a, size))
 		return ;
-	half_to_b(a, b, size);
+	half_to_b(a, b, size, size);
 	size_b = b->size;
 	size_a = size - size_b;
 	if (check_simple_b(b))

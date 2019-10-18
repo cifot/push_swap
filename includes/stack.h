@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:27:57 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/16 00:19:27 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/18 13:18:34 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
 
-#include "libft.h"
+# include "libft.h"
 
 int			make_input(int argc, char **argv, t_stack *stack);
 void		push_op(t_stack *from, t_stack *to);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:52:57 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 14:13:41 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/18 13:27:59 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		check_same(t_stack *st)
 	t_dlist *ptr2;
 
 	ptr1 = st->beg;
-	while(ptr1)
+	while (ptr1)
 	{
 		ptr2 = ptr1->next;
 		while (ptr2)
@@ -96,7 +96,7 @@ static int		add_nums(char *str, t_stack *st)
 		}
 		++i;
 	}
-	while(tmp->size)
+	while (tmp->size)
 		push_op(tmp, st);
 	ft_stack_del_link(&tmp);
 	delete_split(words);

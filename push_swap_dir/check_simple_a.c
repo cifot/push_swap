@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_simple_a.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:59:53 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 21:21:32 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/18 13:24:15 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		check_sort(t_stack *a, size_t size_a)
 	t_dlist		*lst;
 
 	if (!a || size_a < 2)
-		return 1;
+		return (1);
 	lst = a->beg;
 	while (lst->next && (size_a - 1))
 	{
@@ -79,7 +79,7 @@ int				check_simple_a(t_stack *a, size_t size_a)
 	if (check_sort(a, size_a))
 	{
 		if (size_a != a->size)
-			while(size_a)
+			while (size_a)
 			{
 				ft_putstr("ra\n");
 				rotate_op(a);

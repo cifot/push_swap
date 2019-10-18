@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:17:27 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 17:29:01 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/18 13:20:24 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define BUFF_SIZE 65536
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
+
 /*
 **						MEMORY
 */
@@ -147,8 +148,8 @@ int					ft_dlist_is_tagsort(t_dlist *lst, int is_ascending);
 
 typedef struct		s_queue
 {
-	t_dlist 		*beg;
-	t_dlist 		*end;
+	t_dlist			*beg;
+	t_dlist			*end;
 	size_t			size;
 }					t_queue;
 
@@ -163,7 +164,7 @@ t_queue				*ft_queue_new(void);
 
 typedef struct		s_stack
 {
-	t_dlist 		*beg;
+	t_dlist			*beg;
 	size_t			size;
 }					t_stack;
 
@@ -173,6 +174,5 @@ void				*ft_stack_pop(t_stack *stack);
 t_stack				*ft_stack_new(void);
 void				ft_stack_simple_del(t_stack **st);
 void				ft_stack_del(t_stack **st, void (*del)(void *));
-
 
 #endif
