@@ -6,7 +6,7 @@
 /*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:51:04 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/18 13:18:04 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/19 14:15:00 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ int				main(int argc, char **argv)
 	{
 		if (check_command(a, b) == -1)
 			ft_putstr("Error\n");
+	}
+	for(t_dlist *ptr = a->beg; ptr; ptr = ptr->next)
+	{
+		printf("%d\n", ptr->tag);
 	}
 	ft_stack_del_link(&a);
 	ft_stack_del_link(&b);

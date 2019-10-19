@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   half_to_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 23:31:21 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/18 23:35:18 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/19 14:11:55 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ size_t			half_to_a(t_stack *a, t_stack *b, size_t size)
 	middle = find_middle(b, size);
 	while (check_more(b, size--, middle))
 	{
-		if (a->beg->tag >= middle)
+		if (b->beg->tag >= middle)
 		{
 			push_op(b, a);
 			ft_putstr("pa\n");

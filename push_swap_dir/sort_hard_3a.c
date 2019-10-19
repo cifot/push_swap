@@ -6,7 +6,7 @@
 /*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 13:20:56 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/19 13:31:35 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/19 14:10:12 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void		sort_a_min_second(t_stack *a)
 	}
 }
 
-static void		sort_simple_3a(t_stack *a)
+void			sort_hard_3a(t_stack *a)
 {
 	if (a->beg->next->next->tag < a->beg->next->tag
 	&& a->beg->next->next->tag < a->beg->tag)
@@ -64,7 +64,7 @@ static void		sort_simple_3a(t_stack *a)
 	}
 	else
 	{
-		ft_putstr("ra\nsa\nrra");
+		ft_putstr("ra\nsa\nrra\n");
 		rotate_op(a);
 		swap_op(a);
         rev_rotate_op(a);

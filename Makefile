@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: nharra <nharra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/04 12:53:22 by nharra            #+#    #+#              #
-#    Updated: 2019/10/17 19:37:49 by nharra           ###   ########.fr        #
+#    Updated: 2019/10/19 13:56:27 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,14 @@ SRCS_STACK =\
 
 SRCS_PUSH_SWAP =\
 	find_middle.c\
+	half_to_a.c\
+	half_to_b.c\
 	push_swap.c\
 	sort_stack.c\
 	check_simple_a.c\
 	check_simple_b.c\
+	sort_hard_3a.c\
+	sort_hard_3b.c\
 
 SOURCES_DIR_CHECKER = checker_dir
 

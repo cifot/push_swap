@@ -6,7 +6,7 @@
 /*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 23:42:14 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/19 13:01:11 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/19 14:10:21 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			sort_hard_3b(t_stack *b, t_stack *a)
 	}
 	else
 	{
-		ft_putstr("pa\nsb\npb\npb");
+		ft_putstr("pa\nsb\npb\npb\n");
 		push_op(b, a);
 		swap_op(b);
 		push_op(b, a);
