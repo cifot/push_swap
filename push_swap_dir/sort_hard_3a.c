@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_simple_a.c                                   :+:      :+:    :+:   */
+/*   sort_hard_3a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 12:59:53 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/19 13:42:28 by nharra           ###   ########.fr       */
+/*   Created: 2019/10/19 13:20:56 by nharra            #+#    #+#             */
+/*   Updated: 2019/10/19 13:31:35 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "libft.h"
-#include "push_swap.h"
 #include <stdio.h>
 
 static void		sort_a_min_last(t_stack *a)
@@ -34,13 +33,20 @@ static void		sort_a_min_second(t_stack *a)
 {
 	if (a->beg->tag < a->beg->next->next->tag)
 	{
-		ft_putstr("sa\n");
-		swap_op(a);
+		ft_putstr("ra\nsa\nrra\nsa\n");
+		rotate_op(a);
+        swap_op(a);
+        rev_rotate_op(a);
+        swap_op(a);
 	}
 	else
 	{
-		ft_putstr("ra\n");
+		ft_putstr("sa\nra\nsa\nrra\nsa\n");
+        swap_op(a);
 		rotate_op(a);
+        swap_op(a);
+        rev_rotate_op(a);
+        swap_op(a);
 	}
 }
 
@@ -58,27 +64,9 @@ static void		sort_simple_3a(t_stack *a)
 	}
 	else
 	{
-		ft_putstr("rra\nsa");
-		rev_rotate_op(a);
+		ft_putstr("ra\nsa\nrra");
+		rotate_op(a);
 		swap_op(a);
+        rev_rotate_op(a);
 	}
-}
-
-int				check_simple_a(t_stack *a, size_t size_a)
-{
-	if (size_a > 3)
-		return (0);
-	if (size_a == 2)
-	{
-		if (a->beg->tag > a->beg->next->tag)
-		{
-			ft_putstr("sa\n");
-			swap_op(a);
-		}
-	}
-	else if (a->size == 3)
-		sort_simple_3a(a);
-	else if (size_a == 3)
-		sort_hard_3a(a);
-	return (1);
 }

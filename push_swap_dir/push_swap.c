@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:43:05 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/17 22:23:16 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/19 13:39:44 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int				main(int argc, char **argv)
 	if (make_input(argc, argv, a))
 		ft_putstr("Error\n");
 	else if (a->size != 0)
-		sort_stack(a, b, a->size);
+		sort_stack_a_b(a, b, a->size);
 	ft_stack_del_link(&a);
 	ft_stack_del_link(&b);
 	return (1);
