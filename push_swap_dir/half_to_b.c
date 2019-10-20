@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   half_to_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 22:28:17 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/19 14:12:11 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/21 00:55:32 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int		check_more(t_stack *a, size_t size, int middle)
 static void		take_rra(t_stack *a, t_stack *b,
 				size_t to_a, size_t full_size)
 {
-	if (full_size == a->size + b->size)
+	if (full_size >= a->size + b->size)
 		return ;
 	while(to_a)
 	{
@@ -53,7 +53,7 @@ size_t			half_to_b(t_stack *a, t_stack *b, size_t size)
 	to_a = 0;
 	to_b = 0;
 	middle = find_middle(a, size);
-	while (check_more(a, size--, middle))
+	while (check_more(a, size, middle))
 	{
 		if (a->beg->tag >= middle)
 		{
@@ -67,6 +67,7 @@ size_t			half_to_b(t_stack *a, t_stack *b, size_t size)
 			ft_putstr("pb\n");
 			++to_b;
 		}
+		--size;
 	}
 	take_rra(a, b, to_a, size + to_b + to_a);
 	return(to_b);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:51:04 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/19 14:15:00 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/21 00:40:48 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include <stdio.h>
-
+#include "libft.h"
 static int		check_command_continue(t_stack *a, t_stack *b, char *line)
 {
 	if (check_swap(a, b, line) &&
@@ -65,10 +65,11 @@ int				main(int argc, char **argv)
 		if (check_command(a, b) == -1)
 			ft_putstr("Error\n");
 	}
-	for(t_dlist *ptr = a->beg; ptr; ptr = ptr->next)
+	for (t_dlist *ptr = a->beg; ptr->next; ptr = ptr->next)
 	{
-		printf("%d\n", ptr->tag);
+		printf("%d ", ptr->tag);
 	}
+	printf("\n");
 	ft_stack_del_link(&a);
 	ft_stack_del_link(&b);
 	return (1);

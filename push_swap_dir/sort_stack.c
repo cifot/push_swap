@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:48:30 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/19 14:10:33 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/21 00:53:00 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			sort_stack_b_a(t_stack *a, t_stack *b, size_t size)
 			push_op(b, a);
 			--size;
 		}
-		return;
+		return ;
 	}
 	if (check_simple_b(b, a, size))
 		return ;

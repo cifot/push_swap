@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_simple_a.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:59:53 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/19 13:42:28 by nharra           ###   ########.fr       */
+/*   Updated: 2019/10/21 00:17:41 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void		sort_simple_3a(t_stack *a)
 	}
 	else
 	{
-		ft_putstr("rra\nsa");
+		ft_putstr("rra\nsa\n");
 		rev_rotate_op(a);
 		swap_op(a);
 	}
