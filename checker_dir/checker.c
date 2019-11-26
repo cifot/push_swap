@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 12:51:04 by nharra            #+#    #+#             */
-/*   Updated: 2019/10/21 00:40:48 by nharra           ###   ########.fr       */
+/*   Updated: 2019/11/26 11:37:41 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				main(int argc, char **argv)
 		if (check_command(a, b) == -1)
 			ft_putstr("Error\n");
 	}
-	for (t_dlist *ptr = a->beg; ptr->next; ptr = ptr->next)
+	for (t_dlist *ptr = a->beg; ptr; ptr = ptr->next)
 	{
 		printf("%d ", ptr->tag);
 	}

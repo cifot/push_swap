@@ -6,7 +6,7 @@
 /*   By: nharra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 21:19:44 by nharra            #+#    #+#             */
-/*   Updated: 2019/11/26 02:05:38 by nharra           ###   ########.fr       */
+/*   Updated: 2019/11/26 11:57:58 by nharra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,27 @@ static void		check_cost(int value, t_op_cost *cost, t_stack *a)
 {
 	t_dlist		*ptr_a;
 
-	ptr_a = a->beg;
-	if (value > ptr_a->tag)
+	if (value > a->beg->tag)
 	{
-		cost->rra = 1;
-		ptr_a = last(ptr_a);
-		while(ptr_a->tag < value)
+		cost->ra = 0;
+		ptr_a = a->beg;
+		while(value > ptr_a->tag)
+		{
+			ptr_a = ptr_a->next;
+			cost->ra += 1;
+		}
+		cost->rra = a->size - cost->ra;
+	}
+	else
+	{
+		ptr_a = last(a->beg);
+		cost->rra = 0;
+		while (value < ptr_a->tag)
 		{
 			ptr_a = ptr_a->prev;
 			cost->rra += 1;
 		}
 		cost->ra = a->size - cost->rra;
-	}
-	else
-	{
-		cost->ra = 0;
-		while(ptr_a->tag > value)
-		{
-			ptr_a = ptr_a->next;
-			cost->rra += 1;
-		}
-		cost->rra = a->size - cost->ra;
 	}
 	calculate_cost(cost);
 }
