@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nharra <nharra@student.42.fr>              +#+  +:+       +#+         #
+#    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/04 12:53:22 by nharra            #+#    #+#              #
-#    Updated: 2019/10/19 13:56:27 by nharra           ###   ########.fr        #
+#    Updated: 2019/11/26 01:43:15 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 SRCS_CHECKER =\
 	checker.c
@@ -21,15 +21,11 @@ SRCS_STACK =\
 	stack_input.c\
 
 SRCS_PUSH_SWAP =\
-	find_middle.c\
-	half_to_a.c\
-	half_to_b.c\
+	drop_to_b.c\
+	find_min_cost.c\
+	min_cost_to_a.c\
 	push_swap.c\
 	sort_stack.c\
-	check_simple_a.c\
-	check_simple_b.c\
-	sort_hard_3a.c\
-	sort_hard_3b.c\
 
 SOURCES_DIR_CHECKER = checker_dir
 
